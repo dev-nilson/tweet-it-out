@@ -15,7 +15,7 @@ function TweetBox() {
           placeholder="What's happening?"
         />
         <div className="flex items-center">
-          <div className="flex text-blue-400 flex-1">
+          <div className="flex flex-1">
             <div className="clickable">
               <PhotoIcon className="h-5 w-5" />
             </div>
@@ -29,7 +29,7 @@ function TweetBox() {
               <MapPinIcon className="h-5 w-5" />
             </div>
           </div>
-          <button className="bg-blue-400 font-semibold text-white px-5 py-1 rounded-full">
+          <button className="bg-twitterBlue font-semibold text-white px-5 py-1 rounded-full">
             Tweet
           </button>
         </div>
