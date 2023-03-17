@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .clickable {
+    @apply p-2 rounded-full hover:bg-blue-50 cursor-pointer
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
