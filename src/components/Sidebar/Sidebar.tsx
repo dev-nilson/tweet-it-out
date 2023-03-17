@@ -11,7 +11,7 @@ import SidebarItem from "../SidebarItem/SidebarItem";
 
 function Sidebar() {
   return (
-    <div className="flex flex-col col-span-2 items-center px-4 md:items-start">
+    <div className="flex flex-col col-span-2 items-center px-4 md:items-start border-r">
       <h1>TweetItOut</h1>
       <SidebarItem Icon={HomeIcon} label="Home" />
       <SidebarItem Icon={HashtagIcon} label="Explore" />
