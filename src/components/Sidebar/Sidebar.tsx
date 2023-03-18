@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import {
   HomeIcon,
   HashtagIcon,
@@ -9,12 +11,13 @@ import {
 } from "@heroicons/react/24/outline";
 import logo from "../../../assets/logo.png";
 import SidebarItem from "../SidebarItem/SidebarItem";
-import Image from "next/image";
 
 function Sidebar() {
   return (
     <div className="flex flex-col col-span-2 items-center px-4 md:items-start border-r">
-      <Image src={logo} alt="logo" className="h-10 w-10" />
+      <Link href="/">
+        <Image src={logo} alt="logo" className="h-10 w-10" />
+      </Link>
       <SidebarItem Icon={HomeIcon} label="Home" />
       <SidebarItem Icon={HashtagIcon} label="Explore" />
       <SidebarItem Icon={BellIcon} label="Notifications" />
