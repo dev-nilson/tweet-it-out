@@ -7,12 +7,14 @@ import {
   UserIcon,
   EllipsisHorizontalCircleIcon,
 } from "@heroicons/react/24/outline";
+import logo from "../../../assets/logo.png";
 import SidebarItem from "../SidebarItem/SidebarItem";
+import Image from "next/image";
 
 function Sidebar() {
   return (
     <div className="flex flex-col col-span-2 items-center px-4 md:items-start border-r">
-      <h1>TweetItOut</h1>
+      <Image src={logo} alt="logo" className="h-10 w-10" />
       <SidebarItem Icon={HomeIcon} label="Home" />
       <SidebarItem Icon={HashtagIcon} label="Explore" />
       <SidebarItem Icon={BellIcon} label="Notifications" />
