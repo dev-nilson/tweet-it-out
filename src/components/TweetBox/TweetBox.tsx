@@ -4,14 +4,16 @@ import {
   CalendarIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import AudioRecorder from "../AudioRecorder/AudioRecorder";
 
 function TweetBox() {
   return (
     <div className="flex items-center flex-1 px-5 border-y">
       <form className="flex flex-1 flex-col my-3">
+        <AudioRecorder />
         <input
           className="outline-none my-3 text-lg"
-          type="text"
+          type="audio"
           placeholder="What's happening?"
         />
         <div className="flex items-center">
