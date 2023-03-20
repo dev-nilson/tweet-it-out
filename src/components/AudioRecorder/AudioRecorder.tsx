@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MicrophoneIcon } from "@heroicons/react/24/outline";
 
 const AudioRecorder = () => {
+  const [audio, setAudio] = useState<any>(null);
   const [isSupported, setIsSupported] = useState(true);
   const [permission, setPermission] = useState(false);
 
@@ -25,12 +26,21 @@ const AudioRecorder = () => {
   }, []);
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-1">
       <MicrophoneIcon className="h-12 -ml-3 clickable" />
-      {!isSupported && (
-        <small>Audio recorder not supported in your browser</small>
+      <div className="">
+        {!isSupported && (
+          <small>Audio recorder not supported in your browser.</small>
+        )}
+        {!permission && <small>Enable microphone.</small>}
+      </div>
+      {audio ? (
+        <div className="audio-player">
+          <audio src={audio} controls></audio>
+        </div>
+      ) : (
+        <h1>Recording...</h1>
       )}
-      {!permission && <small>Enable microphone</small>}
     </div>
   );
 };
