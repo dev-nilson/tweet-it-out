@@ -1,5 +1,6 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import TweetBox from "../TweetBox/TweetBox";
+import Tweet from "../Tweet/Tweet";
 
 function Feed() {
   return (
@@ -9,6 +10,9 @@ function Feed() {
         <ArrowPathIcon className="h-7 w-7  mr-5 cursor-pointer transition-all duration-300 ease-out hover:rotate-180 active:scale-110" />
       </div>
       <TweetBox />
+      <Tweet />
+      <Tweet />
+      <Tweet />
     </div>
   );
 }
