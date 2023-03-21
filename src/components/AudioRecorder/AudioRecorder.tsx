@@ -70,6 +70,10 @@ const AudioRecorder = () => {
     console.log("recorder stopped");
   };
 
+  const deleteRecording = () => {
+    setAudio(null);
+  };
+
   return (
     <div className="flex items-center space-x-1 mb-3">
       {isRecording ? (
@@ -87,9 +91,12 @@ const AudioRecorder = () => {
         {!permission && <small>Enable microphone.</small>}
       </div>
       {audio ? (
-        <div className="w-full flex space-x-2">
-          <audio className="w-full h-12" src={audio} controls />
-          <TrashIcon className="h-12 clickable text-red-500 hover:bg-red-50" />
+        <div className="flex-grow flex items-center space-x-2">
+          <audio className="w-full" src={audio} controls />
+          <TrashIcon
+            className="h-10 clickable text-red-500 hover:bg-red-50"
+            onClick={deleteRecording}
+          />
         </div>
       ) : (
         <div className="flex items-center">
