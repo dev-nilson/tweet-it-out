@@ -67,7 +67,7 @@ const AudioRecorder = () => {
   };
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-1 mb-3">
       {isRecording ? (
         <PauseIcon className="h-12 -ml-3 clickable" onClick={stopRecording} />
       ) : (
@@ -83,8 +83,8 @@ const AudioRecorder = () => {
         {!permission && <small>Enable microphone.</small>}
       </div>
       {audio ? (
-        <div className="audio-player">
-          <audio src={audio} controls></audio>
+        <div className="w-full">
+          <audio className="w-full h-12" src={audio} controls />
         </div>
       ) : (
         <div className="flex items-center">

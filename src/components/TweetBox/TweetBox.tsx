@@ -11,11 +11,6 @@ function TweetBox() {
     <div className="flex items-center flex-1 px-5 border-y">
       <form className="flex flex-1 flex-col my-3">
         <AudioRecorder />
-        <input
-          className="outline-none my-3 text-lg"
-          type="audio"
-          placeholder="What's happening?"
-        />
         <div className="flex items-center">
           <div className="flex flex-1">
             <div className="clickable">
