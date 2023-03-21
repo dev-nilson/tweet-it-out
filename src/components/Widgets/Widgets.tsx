@@ -1,5 +1,10 @@
-import { MagnifyingGlassIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import {
+  MagnifyingGlassIcon,
+  EllipsisHorizontalIcon,
+} from "@heroicons/react/24/outline";
 import WidgetCard from "../WidgetCard/WidgetCard";
+import avatar from "../../../assets/placeholder.png";
 
 function Widgets() {
   return (
@@ -21,7 +26,16 @@ function Widgets() {
           <p className="text-sm font-bold">Denilson Lemus</p>
         </WidgetCard>
         <WidgetCard title="Who to follow">
-          Placeholder
+          <div className="flex items-center justify-between">
+            <Image className="h-10 w-10 rounded-full" src={avatar} alt="avatar" />
+            <div>
+              <p className="text-sm font-bold">Denilson</p>
+              <p className="text-sm text-gray-600">@devnilson</p>
+            </div>
+            <button className="bg-twitterBlue font-semibold text-white text-sm px-3 py-1 rounded-full">
+              Follow
+            </button>
+          </div>
         </WidgetCard>
       </div>
     </div>
