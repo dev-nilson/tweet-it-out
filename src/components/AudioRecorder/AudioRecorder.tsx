@@ -91,7 +91,7 @@ const AudioRecorder = () => {
         {!permission && <small>Enable microphone.</small>}
       </div>
       {audio ? (
-        <div className="flex-grow flex items-center space-x-2">
+        <div className="flex items-center space-x-2">
           <audio className="w-full" src={audio} controls />
           <TrashIcon
             className="h-10 clickable text-red-500 hover:bg-red-50"
@@ -100,7 +100,7 @@ const AudioRecorder = () => {
         </div>
       ) : (
         <div className="flex items-center">
-          <canvas className="visualizer" height="60px"></canvas>
+          <canvas className="visualizer" height="10px" width="10px"></canvas>
         </div>
       )}
     </div>
