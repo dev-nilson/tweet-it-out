@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import WidgetCard from "../WidgetCard/WidgetCard";
 
 function Widgets() {
@@ -14,7 +14,11 @@ function Widgets() {
       </div>
       <div>
         <WidgetCard title="Trends for you">
-          Placeholder
+          <div className="flex justify-between items-center text-xs">
+            <p>Made with 💙 by</p>
+            <EllipsisHorizontalIcon className="h-5" />
+          </div>
+          <p className="text-sm font-bold">Denilson Lemus</p>
         </WidgetCard>
         <WidgetCard title="Who to follow">
           Placeholder
