@@ -43,7 +43,11 @@ const AudioRecorder = () => {
   };
   
   const stopRecording = () => {
+    mediaRecorder.current.stop();
+    setIsRecording(false);
 
+    console.log(mediaRecorder.current.state);
+    console.log("recorder stopped");
   };
   
   return (
