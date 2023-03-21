@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MicrophoneIcon, PauseIcon } from "@heroicons/react/24/outline";
 
 const AudioRecorder = () => {
+  const mediaRecorder = useRef<any>(null);
   const [audio, setAudio] = useState<any>(null);
   const [stream, setStream] = useState<any>(null);
   const [isSupported, setIsSupported] = useState(true);
@@ -32,15 +33,18 @@ const AudioRecorder = () => {
   }, []);
 
   const startRecording = () => {
-    const mediaRecorder = new MediaRecorder(stream);
-    mediaRecorder.start();
+    const media = new MediaRecorder(stream);
+    mediaRecorder.current = media;
+    mediaRecorder.current.start();
     setIsRecording(true);
 
-    console.log(mediaRecorder.state);
+    console.log(mediaRecorder.current.state);
     console.log("recorder started");
   };
   
-  const stopRecording = () => {};
+  const stopRecording = () => {
+
+  };
   
   return (
     <div className="flex items-center space-x-1">
