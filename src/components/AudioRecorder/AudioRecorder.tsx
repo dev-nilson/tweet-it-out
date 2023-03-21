@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { MicrophoneIcon, PauseIcon } from "@heroicons/react/24/outline";
+import {
+  MicrophoneIcon,
+  PauseIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 
 const AudioRecorder = () => {
   const mediaRecorder = useRef<any>(null);
@@ -83,8 +87,9 @@ const AudioRecorder = () => {
         {!permission && <small>Enable microphone.</small>}
       </div>
       {audio ? (
-        <div className="w-full">
+        <div className="w-full flex space-x-2">
           <audio className="w-full h-12" src={audio} controls />
+          <TrashIcon className="h-12 clickable text-red-500 hover:bg-red-50" />
         </div>
       ) : (
         <div className="flex items-center">
