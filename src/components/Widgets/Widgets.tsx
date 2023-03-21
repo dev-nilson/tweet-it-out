@@ -19,15 +19,21 @@ function Widgets() {
       </div>
       <div>
         <WidgetCard title="Trends for you">
-          <div className="flex justify-between items-center text-xs">
-            <p>Made with 💙 by</p>
-            <EllipsisHorizontalIcon className="h-5" />
+          <div className="hover:bg-gray-200 px-4 py-2 cursor-pointer">
+            <div className="flex justify-between items-center text-xs text-gray-600">
+              <p>Made with 💙 by</p>
+              <EllipsisHorizontalIcon className="h-5" />
+            </div>
+            <p className="text-sm font-bold">Denilson Lemus</p>
           </div>
-          <p className="text-sm font-bold">Denilson Lemus</p>
         </WidgetCard>
         <WidgetCard title="Who to follow">
-          <div className="flex items-center justify-between">
-            <Image className="h-10 w-10 rounded-full" src={avatar} alt="avatar" />
+          <div className="flex items-center justify-between hover:bg-gray-200 px-3 py-2 cursor-pointer">
+            <Image
+              className="h-10 w-10 rounded-full"
+              src={avatar}
+              alt="avatar"
+            />
             <div>
               <p className="text-sm font-bold">Denilson</p>
               <p className="text-sm text-gray-600">@devnilson</p>
