@@ -61,9 +61,14 @@ const AudioRecorder = () => {
     mediaRecorder.current.stop();
     mediaRecorder.current.onstop = () => {
       const audioBlob = new Blob(chunks, { type: mimeType });
-      const audioUrl = URL.createObjectURL(audioBlob);
-      setAudio(audioUrl);
-      setChunks([]);
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(audioBlob);
+
+      fileReader.onloadend = () => {
+        const base64String = fileReader.result;
+        setAudio(base64String);
+        setChunks([]);
+      };
     };
 
     console.log(mediaRecorder.current.state);
