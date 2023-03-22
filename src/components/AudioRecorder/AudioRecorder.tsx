@@ -91,7 +91,7 @@ const AudioRecorder = () => {
         {!permission && <small>Enable microphone.</small>}
       </div>
       {audio ? (
-        <div className="flex items-center space-x-2">
+        <div className="flex w-full items-center space-x-2">
           <audio className="w-full" src={audio} controls />
           <TrashIcon
             className="h-10 clickable text-red-500 hover:bg-red-50"
