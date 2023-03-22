@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -7,8 +7,10 @@ const firebaseConfig = {
   projectId: "dev-nilson-tweet-it-out",
   storageBucket: "dev-nilson-tweet-it-out.appspot.com",
   messagingSenderId: process.env.NEXT_PUBLIC_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const storage = getStorage();
+
+export { app, storage };
