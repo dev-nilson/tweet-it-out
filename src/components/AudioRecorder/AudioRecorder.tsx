@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  ref,
+  uploadString,
+  listAll,
+  getDownloadURL,
+} from "firebase/storage";
+import {
   MicrophoneIcon,
   PauseIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import { storage } from "../../../firebase";
 
 const AudioRecorder = () => {
   const mediaRecorder = useRef<any>(null);
@@ -14,6 +21,10 @@ const AudioRecorder = () => {
   const [isSupported, setIsSupported] = useState(true);
   const [permission, setPermission] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+
+  getDownloadURL(ref(storage, "audios/1679517062179")).then((url) => {
+    setAudio(url)
+  });
 
   useEffect(() => {
     const getMicrophone = async () => {
@@ -68,6 +79,13 @@ const AudioRecorder = () => {
         const base64String = fileReader.result;
         setAudio(base64String);
         setChunks([]);
+
+        const audioToStore = base64String?.toString().split(",")!;
+
+        const storageRef = ref(storage, `audios/${Date.now()}`);
+        uploadString(storageRef, audioToStore[1], "base64").then((snapshot) => {
+          console.log("Uploaded a base64 string!");
+        });
       };
     };
 
@@ -111,4 +129,5 @@ const AudioRecorder = () => {
     </div>
   );
 };
+
 export default AudioRecorder;
