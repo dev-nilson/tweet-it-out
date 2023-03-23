@@ -10,7 +10,7 @@ import { storage } from "../../../firebase";
 const AudioRecorder = () => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const mimeType = "audio/webm";
-  const [audio, setAudio] = useState<any>(null);
+  const [audio, setAudio] = useState<string | null>(null);
   const [chunks, setChunks] = useState<any>([]);
   const [stream, setStream] = useState<any>(null);
   const [isSupported, setIsSupported] = useState(true);
@@ -73,7 +73,7 @@ const AudioRecorder = () => {
       fileReader.readAsDataURL(audioBlob);
 
       fileReader.onloadend = () => {
-        const base64String = fileReader.result;
+        const base64String = fileReader.result as string | null;
         setAudio(base64String);
         setChunks([]);
 
