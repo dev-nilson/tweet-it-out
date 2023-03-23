@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDownloadURL, ref } from "firebase/storage";
+import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { storage } from "../../../firebase";
 import Tweet from "../Tweet/Tweet";
@@ -9,6 +9,18 @@ function Feed() {
   const [audios, setAudios] = useState<Array<string>>([]);
 
   useEffect(() => {
+    const listRef = ref(storage, "audios/");
+
+    listAll(listRef)
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          console.log(itemRef.fullPath);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     getDownloadURL(ref(storage, "audios/1679594364881")).then((url) => {
       console.log(url);
       setAudios([url]);
