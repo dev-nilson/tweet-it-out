@@ -15,16 +15,14 @@ function Feed() {
       .then((res) => {
         res.items.forEach((itemRef) => {
           console.log(itemRef.fullPath);
+          getDownloadURL(ref(storage, itemRef.fullPath)).then((url) => {
+            setAudios((prevAudios) => [...prevAudios, url]);
+          });
         });
       })
       .catch((error) => {
         console.log(error);
       });
-
-    getDownloadURL(ref(storage, "audios/1679594364881")).then((url) => {
-      console.log(url);
-      setAudios([url]);
-    });
   }, []);
 
   return (
@@ -34,7 +32,7 @@ function Feed() {
         <ArrowPathIcon className="h-7 w-7  mr-5 cursor-pointer transition-all duration-300 ease-out hover:rotate-180 active:scale-110" />
       </div>
       <TweetBox />
-      {audios.map((audio) => (
+      {audios.map((audio, index) => (
         <Tweet key={audio} tweet={audio} />
       ))}
     </div>
