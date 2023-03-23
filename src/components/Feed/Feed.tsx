@@ -6,18 +6,19 @@ import Tweet from "../Tweet/Tweet";
 import TweetBox from "../TweetBox/TweetBox";
 
 function Feed() {
-  const [audios, setAudios] = useState<Array<string>>([]);
+  const [audios, setAudios] = useState<string[]>([]);
 
   useEffect(() => {
     const listRef = ref(storage, "audios/");
 
     listAll(listRef)
       .then((res) => {
-        res.items.forEach((itemRef) => {
-          console.log(itemRef.fullPath);
-          getDownloadURL(ref(storage, itemRef.fullPath)).then((url) => {
-            setAudios((prevAudios) => [...prevAudios, url]);
-          });
+        const promises = res.items.map((itemRef) => {
+          return getDownloadURL(ref(storage, itemRef.fullPath));
+        });
+
+        Promise.all(promises).then((urls) => {
+          setAudios(urls);
         });
       })
       .catch((error) => {
@@ -32,7 +33,7 @@ function Feed() {
         <ArrowPathIcon className="h-7 w-7  mr-5 cursor-pointer transition-all duration-300 ease-out hover:rotate-180 active:scale-110" />
       </div>
       <TweetBox />
-      {audios.map((audio, index) => (
+      {audios.reverse().map((audio) => (
         <Tweet key={audio} tweet={audio} />
       ))}
     </div>
