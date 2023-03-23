@@ -14,21 +14,13 @@ type TweetProps = {
 
 function Tweet({ tweet }: TweetProps) {
   return (
-    <div className="flex flex-col space-x-3 border-b pt-3 pb-1 px-3 hover:bg-gray-50 cursor-pointer">
+    <div className="flex flex-col space-x-3 border-b pt-4 pb-1 px-4 hover:bg-gray-50 cursor-pointer">
       <div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <Image className="h-10 w-10 rounded-full" src={avatar} alt="avatar" />
           <div className="w-full">
-            <div className="flex items-center space-x-1">
-              <p className="font-semibold">Username</p>
-              <p className="hidden text-sm text-gray-500 sm:inline">
-                @username
-              </p>
-            </div>
+            <audio className="w-full my-2" src={tweet} controls />
           </div>
-        </div>
-        <div className="my-3 md:my-2">
-          <audio className="w-full md:w-[90%] m-auto" src={tweet} controls />
         </div>
       </div>
 
