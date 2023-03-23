@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  ref,
-  uploadString,
-  listAll,
-  getDownloadURL,
-} from "firebase/storage";
+import { ref, uploadString, listAll, getDownloadURL } from "firebase/storage";
 import {
   MicrophoneIcon,
   PauseIcon,
@@ -22,9 +17,9 @@ const AudioRecorder = () => {
   const [permission, setPermission] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
 
-  getDownloadURL(ref(storage, "audios/1679517062179")).then((url) => {
-    setAudio(url)
-  });
+  /*   getDownloadURL(ref(storage, "audios/1679517062179")).then((url) => {
+    setAudio(url);
+  }); */
 
   useEffect(() => {
     const getMicrophone = async () => {
@@ -51,11 +46,11 @@ const AudioRecorder = () => {
   const startRecording = () => {
     setIsRecording(true);
 
-    const media = new MediaRecorder(stream, { type: mimeType });
+    const media = new MediaRecorder(stream, { mimeType });
     mediaRecorder.current = media;
     mediaRecorder.current.start();
     let audioChunks = [];
-    mediaRecorder.current.ondataavailable = (e) => {
+    mediaRecorder.current.ondataavailable = (e: BlobEvent) => {
       if (typeof e.data === "undefined") return;
       if (e.data.size === 0) return;
       audioChunks.push(e.data);
