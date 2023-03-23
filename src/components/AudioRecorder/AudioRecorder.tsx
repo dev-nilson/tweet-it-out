@@ -17,10 +17,6 @@ const AudioRecorder = () => {
   const [permission, setPermission] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
 
-  /*   getDownloadURL(ref(storage, "audios/1679517062179")).then((url) => {
-    setAudio(url);
-  }); */
-
   useEffect(() => {
     const getMicrophone = async () => {
       if (!navigator?.mediaDevices && !navigator?.mediaDevices?.getUserMedia)
