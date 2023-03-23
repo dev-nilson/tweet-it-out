@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ref, uploadString, listAll, getDownloadURL } from "firebase/storage";
+import { ref, uploadString } from "firebase/storage";
 import {
   MicrophoneIcon,
   PauseIcon,
@@ -8,7 +8,7 @@ import {
 import { storage } from "../../../firebase";
 
 const AudioRecorder = () => {
-  const mediaRecorder = useRef<any>(null);
+  const mediaRecorder = useRef<MediaRecorder | null>(null);
   const mimeType = "audio/webm";
   const [audio, setAudio] = useState<any>(null);
   const [chunks, setChunks] = useState<any>([]);
@@ -49,7 +49,7 @@ const AudioRecorder = () => {
     const media = new MediaRecorder(stream, { mimeType });
     mediaRecorder.current = media;
     mediaRecorder.current.start();
-    let audioChunks = [];
+    let audioChunks: Array<Blob | null> = [];
     mediaRecorder.current.ondataavailable = (e: BlobEvent) => {
       if (typeof e.data === "undefined") return;
       if (e.data.size === 0) return;
@@ -63,6 +63,8 @@ const AudioRecorder = () => {
 
   const stopRecording = () => {
     setIsRecording(false);
+
+    if (!mediaRecorder.current) return;
 
     mediaRecorder.current.stop();
     mediaRecorder.current.onstop = () => {
