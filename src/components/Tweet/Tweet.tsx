@@ -8,21 +8,31 @@ import {
 } from "@heroicons/react/24/outline";
 import avatar from "../../../assets/placeholder.png";
 
-function Tweet() {
+type TweetProps = {
+  tweet: string;
+};
+
+function Tweet({ tweet }: TweetProps) {
   return (
-    <div className="flex flex-col space-x-3 border-b pt-4 pb-2 px-4 hover:bg-gray-50 cursor-pointer">
-      <div className="flex space-x-3 items-center">
-        <Image className="h-10 w-10 rounded-full" src={avatar} alt="avatar" />
-        <div>
-          <div className="flex items-center space-x-1">
-            <p className="font-semibold">Username</p>
-            <p className="hidden text-sm text-gray-500 sm:inline">@username</p>
+    <div className="flex flex-col space-x-3 border-b pt-3 pb-1 px-3 hover:bg-gray-50 cursor-pointer">
+      <div>
+        <div className="flex items-center space-x-2">
+          <Image className="h-10 w-10 rounded-full" src={avatar} alt="avatar" />
+          <div className="w-full">
+            <div className="flex items-center space-x-1">
+              <p className="font-semibold">Username</p>
+              <p className="hidden text-sm text-gray-500 sm:inline">
+                @username
+              </p>
+            </div>
           </div>
-          <div>AUDIO</div>
+        </div>
+        <div className="my-3 md:my-2">
+          <audio className="w-full md:w-[90%] m-auto" src={tweet} controls />
         </div>
       </div>
 
-      <div className="flex items-center justify-evenly ">
+      <div className="flex items-center justify-evenly">
         <div className="clickable text-gray-700 hover:text-twitterBlue">
           <ChatBubbleLeftIcon className="h-5 w-5" />
         </div>
