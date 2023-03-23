@@ -115,8 +115,8 @@ const AudioRecorder = () => {
           />
         </div>
       ) : (
-        <div className="flex items-center">
-          <canvas className="visualizer" height="10px" width="10px"></canvas>
+        <div className="w-full">
+          <div className="w-full h-1 rounded-full bg-twitterBlue"></div>
         </div>
       )}
     </div>
