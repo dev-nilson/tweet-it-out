@@ -11,7 +11,7 @@ const AudioRecorder = () => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const mimeType = "audio/webm";
   const [audio, setAudio] = useState<string | null>(null);
-  const [chunks, setChunks] = useState<any>([]);
+  const [chunks, setChunks] = useState<Array<Blob | null>>([]);
   const [stream, setStream] = useState<any>(null);
   const [isSupported, setIsSupported] = useState(true);
   const [permission, setPermission] = useState(false);
