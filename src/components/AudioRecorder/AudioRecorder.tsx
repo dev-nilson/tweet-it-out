@@ -12,7 +12,7 @@ const AudioRecorder = () => {
   const mimeType = "audio/webm";
   const [audio, setAudio] = useState<string | null>(null);
   const [chunks, setChunks] = useState<Array<Blob | null>>([]);
-  const [stream, setStream] = useState<any>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
   const [isSupported, setIsSupported] = useState(true);
   const [permission, setPermission] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
@@ -46,7 +46,7 @@ const AudioRecorder = () => {
   const startRecording = () => {
     setIsRecording(true);
 
-    const media = new MediaRecorder(stream, { mimeType });
+    const media = new MediaRecorder(stream as MediaStream, { mimeType });
     mediaRecorder.current = media;
     mediaRecorder.current.start();
     let audioChunks: Array<Blob | null> = [];
