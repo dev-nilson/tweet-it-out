@@ -9,14 +9,13 @@ import {
   UserIcon,
   EllipsisHorizontalCircleIcon,
 } from "@heroicons/react/24/outline";
-import logo from "../../../assets/logo.png";
 import SidebarItem from "../SidebarItem/SidebarItem";
 
 function Sidebar() {
   return (
     <div className="flex flex-col col-span-2 items-center px-4 md:items-start border-r">
       <Link href="/">
-        <Image src={logo} alt="logo" className="h-10 w-10" />
+        <Image src={""} alt="logo" className="h-10 w-10" />
       </Link>
       <SidebarItem Icon={HomeIcon} label="Home" />
       <SidebarItem Icon={HashtagIcon} label="Explore" />
