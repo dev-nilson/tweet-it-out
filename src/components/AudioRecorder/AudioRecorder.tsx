@@ -13,7 +13,7 @@ type AudioRecorderProps = {
 const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const mimeType = "audio/webm";
-  const [chunks, setChunks] = useState<Array<Blob | null>>([]);
+  const [chunks, setChunks] = useState<Array<BlobPart>>([]);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [isSupported, setIsSupported] = useState(true);
   const [permission, setPermission] = useState(false);
@@ -47,7 +47,7 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
     const media = new MediaRecorder(stream as MediaStream, { mimeType });
     mediaRecorder.current = media;
     mediaRecorder.current.start();
-    let audioChunks: Array<Blob | null> = [];
+    let audioChunks: Array<BlobPart> = [];
     mediaRecorder.current.ondataavailable = (e: BlobEvent) => {
       if (typeof e.data === "undefined") return;
       if (e.data.size === 0) return;
