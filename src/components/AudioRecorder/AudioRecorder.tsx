@@ -9,7 +9,6 @@ import { storage } from "../../../firebase";
 
 const AudioRecorder = () => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
-  const waveformRef = useRef<HTMLDivElement>(null);
   const mimeType = "audio/webm";
   const [audio, setAudio] = useState<string | null>(null);
   const [chunks, setChunks] = useState<Array<Blob | null>>([]);
@@ -37,27 +36,7 @@ const AudioRecorder = () => {
       }
     };
 
-    const waveformData = [];
-    for (let i = 0; i < 100; i++) {
-      waveformData.push(Math.random());
-    }
-
-    console.log(waveformData)
-
-    let position = 0;
-
-    const interval = setInterval(() => {
-      position = (position + 1) % waveformData.length;
-
-      // Update waveform style
-      const height = waveformData[position] * 100 + "px";
-      waveformRef.current.style.backgroundImage = `linear-gradient(to right, #1c90dd, #cadfe9 ${height}, transparent ${height})`;
-    }, 50);
-
     getMicrophone();
-
-
-    return () => clearInterval(interval)
   }, []);
 
   const startRecording = () => {
@@ -127,19 +106,12 @@ const AudioRecorder = () => {
         )}
         {!permission && <small>Enable microphone.</small>}
       </div>
-      {audio ? (
+      {audio && (
         <div className="flex w-full items-center space-x-2">
           <audio className="w-full" src={audio} controls />
           <TrashIcon
             className="h-10 clickable text-red-500 hover:bg-red-50"
             onClick={deleteRecording}
-          />
-        </div>
-      ) : (
-        <div className="w-full">
-          <div
-            className="w-full h-1 rounded-full"
-            ref={waveformRef}
           />
         </div>
       )}
