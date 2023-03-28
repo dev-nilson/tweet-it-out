@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { ref, uploadString } from "firebase/storage";
 import {
   MicrophoneIcon,
   PauseIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-import { storage } from "../../../firebase";
 
-const AudioRecorder = () => {
+type AudioRecorderProps = {
+  audio: string | null;
+  setAudio: (arg: string | null) => void;
+};
+
+const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const mimeType = "audio/webm";
-  const [audio, setAudio] = useState<string | null>(null);
   const [chunks, setChunks] = useState<Array<Blob | null>>([]);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [isSupported, setIsSupported] = useState(true);
@@ -72,13 +74,6 @@ const AudioRecorder = () => {
         const base64String = fileReader.result as string | null;
         setAudio(base64String);
         setChunks([]);
-
-        const audioToStore = base64String?.toString().split(",")!;
-
-        const storageRef = ref(storage, `audios/${Date.now()}`);
-        uploadString(storageRef, audioToStore[1], "base64").then((snapshot) => {
-          console.log("Uploaded a base64 string!");
-        });
       };
     };
 
