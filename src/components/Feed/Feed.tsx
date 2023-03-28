@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { Ring } from "@uiball/loaders";
 import { storage } from "../../../firebase";
 import Tweet from "../Tweet/Tweet";
 import TweetBox from "../TweetBox/TweetBox";
@@ -33,9 +34,13 @@ function Feed() {
         <ArrowPathIcon className="h-7 w-7  mr-5 cursor-pointer transition-all duration-300 ease-out hover:rotate-180 active:scale-110" />
       </div>
       <TweetBox />
-      {audios.reverse().map((audio) => (
-        <Tweet key={audio} tweet={audio} />
-      ))}
+      {audios.length > 0 ? (
+        audios.reverse().map((audio) => <Tweet key={audio} tweet={audio} />)
+      ) : (
+        <div className="flex justify-center mt-5">
+          <Ring size={40} color="#1d9bf0" />
+        </div>
+      )}
     </div>
   );
 }
