@@ -16,7 +16,6 @@ function TweetBox() {
     e.preventDefault();
 
     const audioToStore = audio?.toString().split(",")!;
-
     const storageRef = ref(storage, `audios/${Date.now()}`);
     uploadString(storageRef, audioToStore[1], "base64").then((snapshot) => {
       setAudio(null);

@@ -83,14 +83,19 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
     <div className="flex items-center space-x-1 mb-3">
       {isRecording ? (
         <div className="flex items-center gap-3">
-          <PauseIcon className="h-12 -ml-3 clickable" onClick={stopRecording} />
+          <PauseIcon
+            className="h-12 -ml-2 bg-twitterBlue rounded-full text-white p-2 cursor-pointer"
+            onClick={stopRecording}
+          />
           <h1>Recording...</h1>
         </div>
       ) : (
-        <MicrophoneIcon
-          className="h-12 -ml-3 clickable"
-          onClick={startRecording}
-        />
+        <div className="flex items-center gap-3">
+          <MicrophoneIcon
+            className="h-12 -ml-2 bg-twitterBlue rounded-full text-white p-2 cursor-pointer"
+            onClick={startRecording}
+          />
+        </div>
       )}
       <div>
         {!isSupported && (
