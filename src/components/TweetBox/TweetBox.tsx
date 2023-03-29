@@ -20,7 +20,6 @@ function TweetBox() {
     const storageRef = ref(storage, `audios/${Date.now()}`);
     uploadString(storageRef, audioToStore[1], "base64").then((snapshot) => {
       setAudio(null);
-      console.log("Uploaded audio");
     });
   };
 

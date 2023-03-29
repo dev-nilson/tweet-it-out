@@ -54,9 +54,6 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
       audioChunks.push(e.data);
     };
     setChunks(audioChunks);
-
-    console.log(mediaRecorder.current.state);
-    console.log("recorder started");
   };
 
   const stopRecording = () => {
@@ -76,9 +73,6 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
         setChunks([]);
       };
     };
-
-    console.log(mediaRecorder.current.state);
-    console.log("recorder stopped");
   };
 
   const deleteRecording = () => {
