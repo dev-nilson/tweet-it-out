@@ -19,6 +19,7 @@ function TweetBox() {
 
     const storageRef = ref(storage, `audios/${Date.now()}`);
     uploadString(storageRef, audioToStore[1], "base64").then((snapshot) => {
+      setAudio(null);
       console.log("Uploaded audio");
     });
   };
@@ -43,8 +44,9 @@ function TweetBox() {
             </div>
           </div>
           <button
-            className="bg-twitterBlue font-semibold text-white px-5 py-1 rounded-full"
+            className="bg-twitterBlue font-semibold text-white px-5 py-1 rounded-full cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={uploadAudio}
+            disabled={audio === null}
           >
             Tweet
           </button>
