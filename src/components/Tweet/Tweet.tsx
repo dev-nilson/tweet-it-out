@@ -36,7 +36,7 @@ function Tweet({ tweet }: TweetProps) {
         </div>
         <div
           className="clickable text-gray-700 hover:bg-red-100 hover:text-red-600"
-          onClick={() => setIsLiked(true)}
+          onClick={() => setIsLiked((prev) => !prev)}
         >
           <HeartIcon className={`h-5 w-5 ${isLiked && "fill-red-400"}`} />
         </div>
