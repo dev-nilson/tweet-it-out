@@ -43,6 +43,7 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
 
   const startRecording = () => {
     setIsRecording(true);
+    setAudio(null);
 
     const media = new MediaRecorder(stream as MediaStream, { mimeType });
     mediaRecorder.current = media;
