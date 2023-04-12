@@ -39,7 +39,7 @@ function Feed() {
           <ArrowPathIcon className="h-7 w-7  mr-5 cursor-pointer transition-all duration-300 ease-out hover:rotate-180 active:scale-110" />
         </div>
       </div>
-      <TweetBox />
+      <TweetBox getAudios={getAudios} />
       {audios.length > 0 ? (
         audios.reverse().map((audio) => <Tweet key={audio} tweet={audio} />)
       ) : (

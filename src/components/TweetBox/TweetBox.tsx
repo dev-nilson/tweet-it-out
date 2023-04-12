@@ -9,7 +9,11 @@ import {
 import { storage } from "../../../firebase";
 import AudioRecorder from "../AudioRecorder/AudioRecorder";
 
-function TweetBox() {
+type TweetBoxProps = {
+  getAudios: () => void;
+};
+
+function TweetBox({ getAudios }: TweetBoxProps) {
   const [audio, setAudio] = useState<string | null>(null);
 
   const uploadAudio = (e: React.MouseEvent<HTMLElement>) => {
@@ -19,6 +23,7 @@ function TweetBox() {
     const storageRef = ref(storage, `audios/${Date.now()}`);
     uploadString(storageRef, audioToStore[1], "base64").then((snapshot) => {
       setAudio(null);
+      getAudios();
     });
   };
 
