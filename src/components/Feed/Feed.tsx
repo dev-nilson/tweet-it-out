@@ -10,6 +10,10 @@ function Feed() {
   const [audios, setAudios] = useState<string[]>([]);
 
   useEffect(() => {
+    getAudios();
+  }, []);
+
+  const getAudios = () => {
     const listRef = ref(storage, "audios/");
 
     listAll(listRef)
@@ -25,7 +29,7 @@ function Feed() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  };
 
   return (
     <div className="lg:col-span-5 col-span-7 pt-3">
