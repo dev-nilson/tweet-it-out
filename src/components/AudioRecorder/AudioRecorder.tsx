@@ -42,6 +42,8 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
   }, []);
 
   const startRecording = () => {
+    if (!permission) return;
+
     setIsRecording(true);
     setAudio(null);
 
@@ -85,7 +87,7 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
       {isRecording ? (
         <div className="flex items-center gap-3">
           <PauseIcon
-            className="h-12 -ml-2 bg-twitterBlue rounded-full text-white p-2 cursor-pointer"
+            className="h-12 -ml-2 rounded-full text-white p-2 cursor-pointer bg-twitterBlue"
             onClick={stopRecording}
           />
           <h1>Recording...</h1>
@@ -93,7 +95,11 @@ const AudioRecorder = ({ audio, setAudio }: AudioRecorderProps) => {
       ) : (
         <div className="flex items-center gap-3">
           <MicrophoneIcon
-            className="h-12 -ml-2 bg-twitterBlue rounded-full text-white p-2 cursor-pointer"
+            className={`h-12 -ml-2 rounded-full text-white p-2 ${
+              permission
+                ? "bg-twitterBlue cursor-pointer"
+                : "bg-gray-300 cursor-not-allowed"
+            }`}
             onClick={startRecording}
           />
         </div>
